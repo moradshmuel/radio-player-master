@@ -1,0 +1,34 @@
+[
+  {
+    "name" : "Gal",
+    "stream" : "http://glzwizzlv.bynetcdn.com/glz_mp3"
+  },
+  {
+    "name": "Kan",
+    "stream": "http://kanliveicy.media.kan.org.il/icy/kanbet_mp3"
+  },
+  {
+    "name": "102",
+    "stream": "http://102.livecdn.biz/102fm_aac?1570436740265"
+  },
+  {
+    "name": "99",
+    "stream": "http://eco01.mediacast.co.il/ecolive/99fm_aac/icecast.audio?1570436644470"
+  },
+  {
+    "name": "91",
+    "stream": "http://91fm.streamgates.net/Lev91Fm"
+  },
+  {
+    "name": "100",
+    "stream": "http://100fm.streamgates.net/Radios100Fm"
+  },
+  {
+    "name": "103",
+    "stream": "https://cdna.streamgates.net/103fm_live/live/icecast.audio?multix_identifier=live&multix_source=103fm_Website"
+  },
+  {
+    "name" : "BBC",
+    "stream" : "http://bbcwssc.ic.llnwd.net/stream/bbcwssc_mp1_ws-eieuk"
+  }
+]
