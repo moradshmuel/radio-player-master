@@ -6,4 +6,4 @@
     android:background="@android:color/background_light"
     android:gravity="center|center_vertical"
     android:textAppearance="?android:attr/textAppearanceListItem"
-    android:textSize="45dp" />
+    android:textSize="100dp" />

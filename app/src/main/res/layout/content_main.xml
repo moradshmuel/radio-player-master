@@ -27,12 +27,12 @@
             android:id="@+id/gridview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/background_dark"
+            android:background="@color/colorAccent"
             android:gravity="center"
-            android:verticalSpacing="1dp"
-            android:horizontalSpacing="1dp"
-            android:padding="1dp"
-            android:numColumns="2" />
+            android:horizontalSpacing="3dp"
+            android:numColumns="2"
+            android:padding="3dp"
+            android:verticalSpacing="3dp" />
 
     </LinearLayout>
 
