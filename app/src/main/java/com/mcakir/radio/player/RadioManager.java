@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 
+import com.mcakir.radio.MainActivity;
+
 import org.greenrobot.eventbus.EventBus;
 
 public class RadioManager {
@@ -66,6 +68,7 @@ public class RadioManager {
 
             service = ((RadioService.LocalBinder) binder).getService();
             serviceBound = true;
+            MainActivity.setDefaultPlayer();
         }
 
         @Override

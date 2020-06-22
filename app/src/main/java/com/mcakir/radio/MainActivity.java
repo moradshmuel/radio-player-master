@@ -1,5 +1,6 @@
 package com.mcakir.radio;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -10,6 +11,7 @@ import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.os.Handler;
 import android.widget.Toast;
 
 import com.mcakir.radio.player.PlaybackStatus;
@@ -28,7 +30,8 @@ import butterknife.OnItemClick;
 
 public class MainActivity extends AppCompatActivity {
 
-
+    private int Lastposition = 0;
+    private ShoutcastListAdapter listAdapter;
 
     //@BindView(R.id.playTrigger)
     //ImageButton trigger;
@@ -36,8 +39,7 @@ public class MainActivity extends AppCompatActivity {
     //@BindView(R.id.listview)
     //ListView listView;
 
-    @BindView(R.id.gridview)
-    GridView gridView;
+    private static GridView gridView;
 
 
     //@BindView(R.id.sub_player)
@@ -54,14 +56,16 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        ButterKnife.bind(this);
+        gridView = (GridView) findViewById(R.id.gridview);
 
+        ButterKnife.bind(this);
 
 
         radioManager = RadioManager.with(this);
 
-        //listView.setAdapter(new ShoutcastListAdapter(this, ShoutcastHelper.retrieveShoutcasts(this)));
-        gridView.setAdapter(new ShoutcastListAdapter(this, ShoutcastHelper.retrieveShoutcasts(this)));
+        listAdapter = new ShoutcastListAdapter(this, ShoutcastHelper.retrieveShoutcasts(this));
+        gridView.setAdapter(listAdapter);
+
     }
 
     @Override
@@ -70,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
 
         EventBus.getDefault().register(this);
+
     }
 
     @Override
@@ -90,9 +95,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+
         super.onResume();
 
         radioManager.bind();
+
     }
 
     @Override
@@ -159,10 +166,18 @@ public class MainActivity extends AppCompatActivity {
 
         Shoutcast shoutcast = (Shoutcast) parent.getItemAtPosition(position);
         if(shoutcast == null){
-
             return;
-
         }
+
+        View gridViewold = gridView.getChildAt(Lastposition);
+        if(gridViewold!=null)
+            gridViewold.setBackgroundColor(Color.WHITE);
+
+        View gridview = gridView.getChildAt(position);
+        if(gridview!=null)
+            gridview.setBackgroundColor(Color.RED);
+
+        Lastposition=position;
 
 
 
@@ -174,4 +189,30 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+
+    public static void setDefaultPlayer(){
+
+        final int defaultPosition = 0;
+
+        gridView.performItemClick(
+                gridView.getChildAt(defaultPosition), //gridView.getAdapter().getView(defaultPosition, null, null),
+                defaultPosition,
+                gridView.getAdapter().getItemId(defaultPosition));
+
+
+        //gridView.getAdapter().getView(defaultPosition, null, null).performClick();
+
+        //Handler handler = new Handler();
+        //handler.post(new Runnable() {
+        //    @Override
+        //    public void run() {
+        //        gridView.performItemClick(
+        //                gridView.getChildAt(defaultPosition), //gridView.getAdapter().getView(defaultPosition, null, null),
+        //                defaultPosition,
+        //                gridView.getAdapter().getItemId(defaultPosition));
+        //    }
+        //});
+    }
+
 }
